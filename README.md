@@ -8,7 +8,7 @@ Aplicacion para la reserva de turnos en canchas sinteticas de futbol, el usuario
 que consfirma si un turno esta apto para jugar, y el consumidor es quien puede anotar a su equipo en un horario permitido 
 
 DER 
-
+![diagrama-red-png](https://github.com/user-attachments/assets/23fe74f0-19d2-4807-b6e2-864614fe3c00)
 AUTORES
 Almestro Sebastian
 Schuenemann Federico
