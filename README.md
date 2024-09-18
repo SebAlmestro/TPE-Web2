@@ -8,7 +8,7 @@ Aplicación para la reserva de turnos en canchas sintéticas de fútbol, el usua
 que confirma si un turno esta apto para jugar, y el consumidor es quien puede anotar a su equipo en un horario permitido.
 
 DER 
-![diagrama-red-png](https://raw.githubusercontent.com/SebAlmestro/TPE-Web2/main/Diagrama%20Alquiler%20De%20Canchas.png)
+
 AUTORES
 Almestro Sebastián.
 Schuenemann Federico.
