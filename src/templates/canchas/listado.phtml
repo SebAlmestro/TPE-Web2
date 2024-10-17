@@ -1,0 +1,22 @@
+<?php include_once 'src/templates/header.phtml'; ?>
+
+<a href="/canchas/panel/canchas/crear" class="btn btn-outline-primary">Crear cancha</a>
+
+<section class="canchas my-3">
+    <?php foreach ($canchas as $cancha) { ?>
+        <div class="card">
+            <img src="<?= $cancha->imagen ?>" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h3 class="card-title">Cancha Numero: <?= $cancha->id_cancha ?></h3>
+                <p class="card-text">Tipo de Cesped: <?= $cancha->tipo_cesped ?></p>
+                <p class="card-text">Precio por turno: $<?= $cancha->precio ?></p>
+                <p class="card-text">Esta techada: <?= ($cancha->techada > 0) ? 'Si' : 'No' ?></p>
+                <a href="/canchas/turnos/<?= $cancha->id_cancha ?>" class="btn btn-outline-secondary">Editar</a>
+                <a href="/canchas/panel/canchas/eliminar/<?= $cancha->id_cancha ?>" class="btn btn-outline-primary">Eliminar</a>
+            </div>
+        </div>
+    <?php } ?>
+</section>
+
+
+<?php include_once 'src/templates/footer.phtml'; ?>

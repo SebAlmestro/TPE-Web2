@@ -1,0 +1,18 @@
+<?php include_once 'src/templates/header.phtml'; ?>
+
+<div class="mb-3">
+
+    <form method="GET" action="panel/turnos/filtrar" class="d-flex">
+        <select class="form-select form-select-lg" name="cancha">
+            <option selected>Selecciona una cancha</option>
+            <?php foreach ($canchas as $cancha) { ?>
+                <option value="<?= $cancha->id_cancha ?>">Numero de cancha: <?= $cancha->id_cancha ?></option>
+            <?php } ?>
+        </select>
+        <button type="submit" class="btn btn-success">Filtrar</button>
+    </form>
+
+</div>
+
+
+<?php include_once 'src/templates/footer.phtml'; ?>

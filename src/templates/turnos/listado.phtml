@@ -1,0 +1,24 @@
+<?php include_once 'src/templates/header.phtml'; ?>
+
+<a href="/canchas/panel/turnos" class="btn btn-outline-primary">Volver al inicio</a>
+<section class="canchas my-3">
+    <?php if(count($turnos) > 0): ?>
+        <?php foreach ($turnos as $turno): ?>
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Turno Numero: <?= $turno->id_turno ?></h3>
+                    <h3 class="card-title">Numero de cancha: <?= $turno->id_cancha ?></h3>
+                    <p class="card-text">Fecha: <?= $turno->fecha ?></p>
+                    <p class="card-text">Hora: <?= $turno->hora ?></p>
+                    <p class="card-text">Estado de alquiler: <?= $turno->estado ?></p>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p>No hay turnos disponibles.</p>
+    <?php endif; ?>
+</section>
+
+
+
+<?php include_once 'src/templates/footer.phtml'; ?>

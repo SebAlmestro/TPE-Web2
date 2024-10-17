@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-09-2024 a las 19:14:32
+-- Tiempo de generación: 17-10-2024 a las 18:59:54
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -18,27 +18,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `alquiler_canchas`
+-- Base de datos: `complejo_canchita`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `administradores`
---
-
-CREATE TABLE `administradores` (
-  `ID_Admin` int(11) NOT NULL,
-  `Nombre De Administrador` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `administradores`
---
-
-INSERT INTO `administradores` (`ID_Admin`, `Nombre De Administrador`) VALUES
-(1, 'Federico'),
-(2, 'Sebastian');
 
 -- --------------------------------------------------------
 
@@ -47,42 +28,19 @@ INSERT INTO `administradores` (`ID_Admin`, `Nombre De Administrador`) VALUES
 --
 
 CREATE TABLE `canchas` (
-  `ID_Cancha` int(11) NOT NULL,
-  `Numero De Cancha` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `id_cancha` int(11) NOT NULL,
+  `tipo_cesped` text DEFAULT 'Sintetico',
+  `techada` tinyint(1) DEFAULT 0,
+  `precio` int(11) DEFAULT 0,
+  `imagen` text DEFAULT 'https://media-cdn.tripadvisor.com/media/photo-s/07/8c/06/4d/el-clasico-futbol-5.jpg'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `canchas`
 --
 
-INSERT INTO `canchas` (`ID_Cancha`, `Numero De Cancha`) VALUES
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `equipos`
---
-
-CREATE TABLE `equipos` (
-  `ID_Equipo` int(11) NOT NULL,
-  `Nombre Del Equipo` varchar(45) NOT NULL,
-  `Cantidad De Jugadores` int(11) NOT NULL,
-  `Nombre De Capitan` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `equipos`
---
-
-INSERT INTO `equipos` (`ID_Equipo`, `Nombre Del Equipo`, `Cantidad De Jugadores`, `Nombre De Capitan`) VALUES
-(1, 'Stanley FC', 5, 'Alfredo Montes'),
-(2, 'Waterdog FC', 5, 'German Cortes'),
-(3, 'Liberti Team', 6, 'Manuel Martinez'),
-(4, 'AllNighterTeam', 8, 'Lucas Rodriguez');
+INSERT INTO `canchas` (`id_cancha`, `tipo_cesped`, `techada`, `precio`, `imagen`) VALUES
+(1, 'Sintetico', 1, 20000, 'https://media-cdn.tripadvisor.com/media/photo-s/07/8c/06/4d/el-clasico-futbol-5.jpg');
 
 -- --------------------------------------------------------
 
@@ -91,82 +49,89 @@ INSERT INTO `equipos` (`ID_Equipo`, `Nombre Del Equipo`, `Cantidad De Jugadores`
 --
 
 CREATE TABLE `turnos` (
-  `ID_Turno` int(11) NOT NULL,
-  `ID_Cancha` int(11) NOT NULL,
-  `Fecha` date NOT NULL,
-  `Horario` time NOT NULL,
-  `ID_Admin` int(11) NOT NULL,
-  `ID_Equipo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `id_turno` int(11) NOT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
+  `id_cancha` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `turnos`
 --
 
-INSERT INTO `turnos` (`ID_Turno`, `ID_Cancha`, `Fecha`, `Horario`, `ID_Admin`, `ID_Equipo`) VALUES
-(1, 1, '2024-09-21', '15:00:00', 1, 1),
-(2, 4, '2024-09-22', '19:00:00', 2, 2),
-(3, 2, '2024-09-26', '18:00:00', 1, 3),
-(4, 3, '2024-10-01', '14:00:00', 2, 4);
+INSERT INTO `turnos` (`id_turno`, `id_usuario`, `id_cancha`, `fecha`, `hora`) VALUES
+(1, NULL, 1, '2024-10-19', '10:30:00');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id_usuario` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `dni` varchar(200) NOT NULL,
+  `contraseña` varchar(1350) NOT NULL,
+  `rol` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `nombre`, `dni`, `contraseña`, `rol`) VALUES
+(1, 'juan perez', '25678635', 'pepe123', 'cliente'),
+(2, 'mario alvarez', '15672642', 'mario123', 'cliente'),
+(3, 'albert marquez', '24577231', 'alb123', 'cliente'),
+(4, 'admin', '1', 'adminweb2024', 'admin');
 
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `administradores`
---
-ALTER TABLE `administradores`
-  ADD PRIMARY KEY (`ID_Admin`);
-
---
 -- Indices de la tabla `canchas`
 --
 ALTER TABLE `canchas`
-  ADD PRIMARY KEY (`ID_Cancha`);
-
---
--- Indices de la tabla `equipos`
---
-ALTER TABLE `equipos`
-  ADD PRIMARY KEY (`ID_Equipo`);
+  ADD PRIMARY KEY (`id_cancha`);
 
 --
 -- Indices de la tabla `turnos`
 --
 ALTER TABLE `turnos`
-  ADD PRIMARY KEY (`ID_Turno`),
-  ADD KEY `ID_Cancha` (`ID_Cancha`,`ID_Admin`,`ID_Equipo`),
-  ADD KEY `ID_Admin` (`ID_Admin`),
-  ADD KEY `ID_Equipo` (`ID_Equipo`);
+  ADD PRIMARY KEY (`id_turno`),
+  ADD KEY `fk_usuario_turno` (`id_usuario`),
+  ADD KEY `fk_usuario_cancha` (`id_cancha`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id_usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `administradores`
---
-ALTER TABLE `administradores`
-  MODIFY `ID_Admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT de la tabla `canchas`
 --
 ALTER TABLE `canchas`
-  MODIFY `ID_Cancha` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `equipos`
---
-ALTER TABLE `equipos`
-  MODIFY `ID_Equipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_cancha` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `turnos`
 --
 ALTER TABLE `turnos`
-  MODIFY `ID_Turno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_turno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
@@ -176,13 +141,10 @@ ALTER TABLE `turnos`
 -- Filtros para la tabla `turnos`
 --
 ALTER TABLE `turnos`
-  ADD CONSTRAINT `turnos_ibfk_1` FOREIGN KEY (`ID_Cancha`) REFERENCES `canchas` (`ID_Cancha`),
-  ADD CONSTRAINT `turnos_ibfk_2` FOREIGN KEY (`ID_Admin`) REFERENCES `administradores` (`ID_Admin`),
-  ADD CONSTRAINT `turnos_ibfk_3` FOREIGN KEY (`ID_Equipo`) REFERENCES `equipos` (`ID_Equipo`);
+  ADD CONSTRAINT `fk_usuario_cancha` FOREIGN KEY (`id_cancha`) REFERENCES `canchas` (`id_cancha`),
+  ADD CONSTRAINT `fk_usuario_turno` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
