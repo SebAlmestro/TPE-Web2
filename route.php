@@ -44,15 +44,20 @@ switch ($params[0]) {
                             $canchaController->renderPanelCrearPage();
                             break;
                         case 'editar':
-                            $canchaController->renderPanelPage();
-                            break;
+                            if (isset($params[3])) {
+                                $canchaController->renderPaneleditarCancha($params[3]);
+                                break;
+                            }
                         case 'eliminar':
-                            if(isset($params[3])) {
+                            if (isset($params[3])) {
                                 $canchaController->eliminarCancha($params[3]);
                             }
                             break;
                         case 'nueva':
                             $canchaController->crearCancha();
+                            break;
+                        case 'actualizar':
+                            $canchaController->editarCancha($params[3]);
                             break;
                     }
                 } else {
@@ -72,7 +77,7 @@ switch ($params[0]) {
                             $canchaController->renderPanelPage();
                             break;
                         case 'eliminar':
-                            if(isset($params[3])) {
+                            if (isset($params[3])) {
                                 $canchaController->eliminarCancha($params[3]);
                             }
                             break;
@@ -80,8 +85,7 @@ switch ($params[0]) {
                             $canchaController->crearCancha();
                             break;
                     }
-                } 
-                 else {
+                } else {
                     $turnoController->renderPanelPage();
                 }
             }

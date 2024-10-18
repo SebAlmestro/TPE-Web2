@@ -11,6 +11,10 @@ class CanchaView {
     public function showCrearCancha(){
         include_once 'src/templates/canchas/crear.phtml';
     }
+    public function showEditarCancha($i){
+        $id = $i;
+        include_once 'src/templates/canchas/editar.phtml';
+    }
     public function showTurnos($turnos){
         include_once 'src/templates/turnos.phtml';
     }
