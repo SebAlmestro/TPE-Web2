@@ -78,7 +78,7 @@ switch ($params[0]) {
                             break;
                         case 'eliminar':
                             if (isset($params[3])) {
-                                $canchaController->eliminarCancha($params[3]);
+                                $turnoController->eliminarTurno($params[3]);
                             }
                             break;
                         case 'nueva':

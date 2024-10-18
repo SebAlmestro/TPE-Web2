@@ -11,6 +11,8 @@
                     <p class="card-text">Fecha: <?= $turno->fecha ?></p>
                     <p class="card-text">Hora: <?= $turno->hora ?></p>
                     <p class="card-text">Estado de alquiler: <?= $turno->estado ?></p>
+                    <a href="/canchas/panel/turnos/editar/<?= $turno->id_turno ?>" class="btn btn-outline-secondary">Editar</a>
+                    <a href="/canchas/panel/turnos/eliminar/<?= $turno->id_turno ?>" class="btn btn-outline-primary">Eliminar</a>
                 </div>
             </div>
         <?php endforeach; ?>

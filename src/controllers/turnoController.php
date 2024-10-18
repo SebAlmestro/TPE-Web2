@@ -17,6 +17,12 @@ class TurnoController {
         $this->model_cancha = new CanchaModel();
         $this->alert = new ErrorView();
     }
+    public function eliminarTurno($id)
+    {
+        $this->model->eliminar($id);
+        header("Location: http://" . $_SERVER["SERVER_NAME"] . "/canchas/panel/turnos");
+    }
+
 
     public function renderPanelPage(){
         $canchas =  $this->model_cancha->listar();

@@ -9,10 +9,15 @@ class TurnoModel {
         $this->PDO = $conex->conexion(); // Metodo conexion.
     } // El constructor crea la conexion a la BD y la guarda en el PDO
 
-
+    public function eliminar($id)
+    {
+        $queryTurnos = $this->PDO->prepare("DELETE FROM turnos WHERE id_turno = ?");
+        $queryTurnos->execute([$id]);
+        return $queryTurnos;
+    }
     public function listarPorCanchas($identificador) {
         $query = $this->PDO->prepare("SELECT * FROM turnos WHERE id_cancha = ?");
         $query->execute([$identificador]);
-        return $query->fetchAll(PDO::FETCH_OBJ); 
+        return $query->fetchAll(PDO::FETCH_OBJ);
     }
 }
