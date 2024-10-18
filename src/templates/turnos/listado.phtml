@@ -1,6 +1,6 @@
 <?php include_once 'src/templates/header.phtml'; ?>
 
-<a href="/canchas/panel/turnos" class="btn btn-outline-primary">Volver al inicio</a>
+<a href="panel/canchas" class="btn btn-outline-primary">Volver al listado</a>
 <section class="canchas my-3">
     <?php if(count($turnos) > 0): ?>
         <?php foreach ($turnos as $turno): ?>
@@ -11,8 +11,8 @@
                     <p class="card-text">Fecha: <?= $turno->fecha ?></p>
                     <p class="card-text">Hora: <?= $turno->hora ?></p>
                     <p class="card-text">Estado de alquiler: <?= $turno->estado ?></p>
-                    <a href="/canchas/panel/turnos/editar/<?= $turno->id_turno ?>" class="btn btn-outline-secondary">Editar</a>
-                    <a href="/canchas/panel/turnos/eliminar/<?= $turno->id_turno ?>" class="btn btn-outline-primary">Eliminar</a>
+                    <a href="panel/turnos/editar/<?= $turno->id_turno ?>" class="btn btn-outline-secondary">Editar</a>
+                    <a href="panel/turnos/eliminar/<?= $turno->id_turno ?>" class="btn btn-outline-primary">Eliminar</a>
                 </div>
             </div>
         <?php endforeach; ?>
