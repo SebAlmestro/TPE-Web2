@@ -19,8 +19,11 @@ class TurnoController {
     }
     public function eliminarTurno($id)
     {
+        $base = explode( "/" , $_SERVER['REQUEST_URI']);
+
         $this->model->eliminar($id);
-        header("Location: http://" . $_SERVER["SERVER_NAME"] . "/canchas/panel/turnos");
+        header("Location: http://" . $_SERVER["SERVER_NAME"] . "/" . $base[1] . "/panel/turnos");
+        
     }
 
 

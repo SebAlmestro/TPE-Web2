@@ -19,8 +19,10 @@ class CanchaController
 
     public function eliminarCancha($id)
     {
+        $base = explode("/", $_SERVER['REQUEST_URI']);
+
         $this->model->eliminar($id);
-        header("Location: http://" . $_SERVER["SERVER_NAME"] . "/canchas/panel/canchas");
+        header("Location: http://" . $_SERVER["SERVER_NAME"] . "/" . $base[1] . "/panel/canchas");
     }
 
     public function editarCancha($id)
@@ -29,9 +31,9 @@ class CanchaController
             $tipo_cesped = $_POST['cesped'];
             $precio = $_POST['precio'];
             $techada = $_POST['techada'];
-           
+            $base = explode("/", $_SERVER['REQUEST_URI']);
             $this->model->editarCancha($id, $tipo_cesped, $precio, $techada);
-            header("Location: http://" . $_SERVER["SERVER_NAME"] . "/canchas/panel/canchas");
+            header("Location: http://" . $_SERVER["SERVER_NAME"] . "/" . $base[1] . "/panel/canchas");
         }
     }
 
@@ -42,9 +44,9 @@ class CanchaController
             $precio = $_POST['precio'];
             $imagen = $_POST['imagen'];
             $techada = $_POST['techada'];
-
+            $base = explode("/", $_SERVER['REQUEST_URI']);
             $this->model->crear($tipo_cesped, $imagen, $precio, $techada);
-            header("Location: http://" . $_SERVER["SERVER_NAME"] . "/canchas/panel/canchas");
+            header("Location: http://" . $_SERVER["SERVER_NAME"] . "/" . $base[1] . "/panel/canchas");
         }
     }
 
