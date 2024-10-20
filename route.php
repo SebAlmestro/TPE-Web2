@@ -71,18 +71,20 @@ switch ($params[0]) {
                             $turnoController->renderTurnosPage();
                             break;
                         case 'crear':
-                            $canchaController->renderPanelCrearPage();
+                            $turnoController->renderPanelCrearTurno();
                             break;
                         case 'editar':
-                            $canchaController->renderPanelPage();
-                            break;
+                            if (isset($params[3])) {
+                                $turnoController->renderPanelEditarTurno($params[3]);
+                                break;
+                            }
                         case 'eliminar':
                             if (isset($params[3])) {
                                 $turnoController->eliminarTurno($params[3]);
                             }
                             break;
                         case 'nueva':
-                            $canchaController->crearCancha();
+                            $turnoController->crearTurno();
                             break;
                     }
                 } else {

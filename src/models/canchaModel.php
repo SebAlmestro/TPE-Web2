@@ -42,7 +42,6 @@ class CanchaModel
 
     public function editarCancha($id, $tipo_cesped,  $precio, $techada)
     {
-      
         $query = $this->PDO->prepare("UPDATE canchas SET tipo_cesped=?,techada=?,precio=? WHERE  id_cancha = ?");
         $query->execute([$tipo_cesped, $techada,  $precio, $id]);
     }

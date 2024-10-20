@@ -25,17 +25,51 @@ class TurnoController {
         header("Location: http://" . $_SERVER["SERVER_NAME"] . "/" . $base[1] . "/panel/turnos");
         
     }
-
+    public function editarTurno($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === "POST" && !empty($_POST['fecha']) && !empty($_POST['hora']) && !empty($_POST['estado'])) {
+            $fecha = $_POST['fecha'];
+            $hora = $_POST['hora'];
+            $estado = $_POST['estado'];
+            $base = explode("/", $_SERVER['REQUEST_URI']);
+            $this->model->editarTurno($id, $fecha, $hora, $estado);
+            header("Location: http://" . $_SERVER["SERVER_NAME"] . "/" . $base[1] . "/panel/turnos");
+        }
+    }
+    public function crearTurno()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === "POST" && !empty($_POST['id_cancha']) && !empty($_POST['fecha']) && !empty($_POST['hora']) && !empty($_POST['estado'])) {
+            $id_cancha = $_POST['id_cancha'];
+            $fecha = $_POST['fecha'];
+            $hora = $_POST['hora'];
+            $estado = $_POST['estado'];
+            $base = explode("/", $_SERVER['REQUEST_URI']);
+            $this->model->crearTurno($id_cancha, $fecha, $hora, $estado);
+            header("Location: http://" . $_SERVER["SERVER_NAME"] . "/" . $base[1] . "/panel/turnos");
+        }
+    }
 
     public function renderPanelPage(){
         $canchas =  $this->model_cancha->listar();
         $this->view->showInicio($canchas);
     }
+
     public function renderTurnosPage(){
         if(!isset($_GET['cancha'])){
             $_GET['cancha'] = 1;
         }
         $turnos =  $this->model->listarPorCanchas($_GET['cancha']);
         $this->view->showTurnosPorCancha($turnos);
+    }
+
+    public function renderPanelCrearTurno()
+    {
+
+        $this->view->showCrearTurno();
+    }
+    public function renderPanelEditarTurno($i)
+    {
+        $id = $i;
+        $this->view->showEditarTurno($id);
     }
 }

@@ -15,6 +15,17 @@ class TurnoModel {
         $queryTurnos->execute([$id]);
         return $queryTurnos;
     }
+    public function editarTurno($id, $fecha,  $hora, $estado)
+    {
+        $query = $this->PDO->prepare("UPDATE turnos SET fecha=?,hora=?,estado=? WHERE  id_turno = ?");
+        $query->execute([$fecha, $hora, $estado, $id]);
+    }
+    public function crearTurno($id_cancha, $fecha, $hora,  $estado)
+    {
+        $query = $this->PDO->prepare("INSERT INTO turnos (id_turno, id_cancha, fecha, hora, estado) VALUES (null,?,?,?,?)");
+        $query->execute([$id_cancha, $fecha, $hora,  $estado]);
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
     public function listarPorCanchas($identificador) {
         $query = $this->PDO->prepare("SELECT * FROM turnos WHERE id_cancha = ?");
         $query->execute([$identificador]);

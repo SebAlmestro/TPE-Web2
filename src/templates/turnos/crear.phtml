@@ -1,0 +1,25 @@
+<?php include_once 'src/templates/header.phtml'; ?>
+
+<form class="w-50 mx-auto my-5" action="panel/turnos/nueva" method="POST" enctype="multipart/form-data">
+<a href="panel/turnos" class="btn btn-outline-primary">Volver al listado</a>
+    <div class="mb-3">
+        <label for="cancha" class="form-label">Cancha</label>
+        <input type="number" class="form-control" name="cancha" id="cancha" placeholder="Ingrese Cancha">
+    </div>
+    <div class="mb-3">
+        <label for="fecha" class="form-label">Fecha</label>
+        <input type="date" class="form-control" name="fecha" id="fecha" placeholder="Ingrese Fecha">
+    </div>
+    <div class="mb-3">
+        <label for="horario" class="form-label">Horario</label>
+        <input type="time" class="form-control" name="horario" id="horario" placeholder="Ingrese Horario">
+    </div>
+    <div class="mb-3">
+        <label for="estado" class="form-label">Estado</label>
+        <input type="text"  class="form-control" name="estado" id="estado" placeholder="Disponible/Reservado">
+    </div>
+    
+    <button type="submit" class="btn btn-warning w-100">Crear Turno</button>
+</form>
+
+<?php include_once 'src/templates/footer.phtml'; ?>
