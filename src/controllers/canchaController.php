@@ -43,7 +43,7 @@ class CanchaController
             $tipo_cesped = $_POST['cesped'];
             $precio = $_POST['precio'];
             $imagen = $_POST['imagen'];
-            $techada = $_POST['techada'];
+            $techada = $_POST['techada'] === "true" ? 1 : 0;
             $base = explode("/", $_SERVER['REQUEST_URI']);
             $this->model->crear($tipo_cesped, $imagen, $precio, $techada);
             header("Location: http://" . $_SERVER["SERVER_NAME"] . "/" . $base[1] . "/panel/canchas");
