@@ -22,7 +22,7 @@ class TurnoModel {
     }
     public function crearTurno($id_cancha, $fecha, $hora,  $estado)
     {
-        $query = $this->PDO->prepare("INSERT INTO turnos (id_turno, id_cancha, fecha, hora, estado) VALUES (null,?,?,?,?)");
+        $query = $this->PDO->prepare("INSERT INTO turnos ( id_cancha, fecha, hora, estado) VALUES (?,?,?,?)");
         $query->execute([$id_cancha, $fecha, $hora,  $estado]);
         return $query->fetchAll(PDO::FETCH_OBJ);
     }

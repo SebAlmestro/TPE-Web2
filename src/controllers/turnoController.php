@@ -25,23 +25,13 @@ class TurnoController {
         header("Location: http://" . $_SERVER["SERVER_NAME"] . "/" . $base[1] . "/panel/turnos");
         
     }
-    public function editarTurno($id)
-    {
-        if ($_SERVER['REQUEST_METHOD'] === "POST" && !empty($_POST['fecha']) && !empty($_POST['hora']) && !empty($_POST['estado'])) {
-            $fecha = $_POST['fecha'];
-            $hora = $_POST['hora'];
-            $estado = $_POST['estado'];
-            $base = explode("/", $_SERVER['REQUEST_URI']);
-            $this->model->editarTurno($id, $fecha, $hora, $estado);
-            header("Location: http://" . $_SERVER["SERVER_NAME"] . "/" . $base[1] . "/panel/turnos");
-        }
-    }
+    
     public function crearTurno()
     {
-        if ($_SERVER['REQUEST_METHOD'] === "POST" && !empty($_POST['id_cancha']) && !empty($_POST['fecha']) && !empty($_POST['hora']) && !empty($_POST['estado'])) {
-            $id_cancha = $_POST['id_cancha'];
+        if ($_SERVER['REQUEST_METHOD'] === "POST" && !empty($_POST['cancha']) && !empty($_POST['fecha']) && !empty($_POST['horario']) && !empty($_POST['estado'])) {
+            $id_cancha = $_POST['cancha'];
             $fecha = $_POST['fecha'];
-            $hora = $_POST['hora'];
+            $hora = $_POST['horario'];
             $estado = $_POST['estado'];
             $base = explode("/", $_SERVER['REQUEST_URI']);
             $this->model->crearTurno($id_cancha, $fecha, $hora, $estado);
@@ -71,5 +61,17 @@ class TurnoController {
     {
         $id = $i;
         $this->view->showEditarTurno($id);
+    }
+
+    public function modTurno($id){
+        if ($_SERVER['REQUEST_METHOD'] === "POST" && !empty($_POST['fecha']) && !empty($_POST['hora']) && !empty($_POST['estado'])){
+            $fecha = $_POST['fecha'];
+            $hora = $_POST['hora'];
+            $estado = $_POST['estado'];
+            $base = explode("/", $_SERVER['REQUEST_URI']);
+            $this->model->editarTurno($id, $fecha, $hora, $estado);
+            header("Location: http://" . $_SERVER["SERVER_NAME"] . "/" . $base[1] . "/panel/turnos");
+
+        }
     }
 }

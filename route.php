@@ -78,6 +78,9 @@ switch ($params[0]) {
                                 $turnoController->renderPanelEditarTurno($params[3]);
                                 break;
                             }
+                        case 'cambiar':
+                            $turnoController->modTurno($params[3]);
+                            break;
                         case 'eliminar':
                             if (isset($params[3])) {
                                 $turnoController->eliminarTurno($params[3]);
