@@ -30,7 +30,7 @@ class CanchaController
         if ($_SERVER['REQUEST_METHOD'] === "POST" && !empty($_POST['cesped']) && !empty($_POST['techada']) && !empty($_POST['precio'])) {
             $tipo_cesped = $_POST['cesped'];
             $precio = $_POST['precio'];
-            $techada = $_POST['techada'];
+            $techada = $_POST['techada'] === "true" ? 1 : 0;
             $base = explode("/", $_SERVER['REQUEST_URI']);
             $this->model->editarCancha($id, $tipo_cesped, $precio, $techada);
             header("Location: http://" . $_SERVER["SERVER_NAME"] . "/" . $base[1] . "/panel/canchas");
